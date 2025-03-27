@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
-import { BiHome, BiUser, BiBarChartAlt2, BiRocket } from 'react-icons/bi';
+import { BiUser, BiBarChartAlt2, BiRocket, BiBookAlt } from 'react-icons/bi';
 
 interface NavItem {
   icon: React.ReactNode;

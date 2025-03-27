@@ -21,21 +21,26 @@ const Index: React.FC = () => {
       mirror: false,
     })
 
-    initMobileNav()
     initScrollToTop()
     initScrollspy()
   }, [])
 
-  return (
-    <>
-      <Header />
+  const Content = () => {
+    return (
       <main id='main'>
         <Info />
         <Skills />
         <Portfolio />
       </main>
+    )
+  }
+
+  return (
+    <div style={{width: '100vw'}}>
+      <Header />
+      <Content />
       <Footer />
-    </>
+    </div>
   )
 }
 

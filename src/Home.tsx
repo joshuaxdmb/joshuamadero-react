@@ -10,6 +10,7 @@ import Skills from './components/Skills'
 import Portfolio from './components/PortfolioSummary'
 import Footer from './components/Footer'
 import { initMobileNav, initScrollToTop } from './utils/mobileNav'
+import { initScrollspy } from './utils/scrollspy'
 
 const Index: React.FC = () => {
   useEffect(() => {
@@ -22,6 +23,7 @@ const Index: React.FC = () => {
 
     initMobileNav()
     initScrollToTop()
+    initScrollspy()
   }, [])
 
   return (

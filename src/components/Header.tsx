@@ -9,17 +9,27 @@ interface NavItem {
 }
 
 const navItems: NavItem[] = [
-  { icon: <BiHome />, label: 'Home', href: '#info' },
-  { icon: <BiUser />, label: 'Info', href: '#info' },
-  { icon: <BiBarChartAlt2 />, label: 'Skills', href: '#skills' },
-  { icon: <BiRocket />, label: 'Projects Overview', href: '#portfolio' },
+  { icon: <BiUser className='nav-icon'/>, label: 'Info', href: '#info' },
+  { icon: <BiBarChartAlt2 className='nav-icon'/>, label: 'Skills', href: '#skills' },
+  { icon: <BiRocket className='nav-icon'/>, label: 'Projects Overview', href: '#projects' },
+  { icon: <BiBookAlt className='nav-icon'/>, label: 'Portfolio', href: '/projects' },
 ];
 
 const Header: React.FC = () => {
+  const [isMobileNavActive, setIsMobileNavActive] = useState(false);
+
+  const toggleMobileNav = () => {
+    setIsMobileNavActive(!isMobileNavActive);
+    document.body.classList.toggle('mobile-nav-active');
+  };
+
   return (
     <>
-      <i className="bi bi-list mobile-nav-toggle d-xl-none"></i>
-      <header id="header">
+      <i 
+        className={`bi ${isMobileNavActive ? 'bi-x' : 'bi-list'} mobile-nav-toggle d-xl-none`}
+        onClick={toggleMobileNav}
+      ></i>
+      <header id="header" className={isMobileNavActive ? 'mobile-nav-active' : ''}>
         <div className="d-flex flex-column">
           <div className="profile">
             <img src="assets/img/profile-img.jpg" alt="" className="img-fluid rounded-circle" />
@@ -40,7 +50,16 @@ const Header: React.FC = () => {
             <ul>
               {navItems.map((item, index) => (
                 <li key={index}>
-                  <a href={item.href} className="nav-link scrollto">
+                  <a 
+                    href={item.href} 
+                    className="nav-link scrollto"
+                    onClick={() => {
+                      if (isMobileNavActive) {
+                        setIsMobileNavActive(false);
+                        document.body.classList.remove('mobile-nav-active');
+                      }
+                    }}
+                  >
                     {item.icon} <span>{item.label}</span>
                   </a>
                 </li>
